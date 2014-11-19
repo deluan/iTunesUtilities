@@ -50,7 +50,7 @@ import org.xml.sax.SAXException;
  * that xml stream as attempt to use it as the validation DTD, but the stream
  * won't have any DTD directives in it, thus validation will be skipped entirely.
  * 
- * Thanks to Pawe³ Stobiñski for example code: 
+ * Thanks to PaweÂ³ StobiÃ±ski for example code:
  *   http://www.velocityreviews.com/forums/t139773-saxparser-ignore-ltdoctypegt-line.html
  */
 class SAXFakeEntityResolver implements EntityResolver

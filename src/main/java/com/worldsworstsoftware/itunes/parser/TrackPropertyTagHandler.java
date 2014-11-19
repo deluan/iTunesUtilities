@@ -61,6 +61,7 @@ class TrackPropertyTagHandler implements PropertyTagHandler {
         addPropertyToPropertyMap(TrackProperty.DISC_NUMBER);
         addPropertyToPropertyMap(TrackProperty.DISC_COUNT);
         addPropertyToPropertyMap(TrackProperty.BPM);
+        addPropertyToPropertyMap(TrackProperty.RATING);
     }
 
     private static void addPropertyToPropertyMap(String value) {
@@ -280,6 +281,9 @@ class TrackPropertyTagHandler implements PropertyTagHandler {
                 // example property: <key>BPM</key><integer>192</integer>
                 currentTrack.setBPM(DataTypeParser.parseInteger(
                         TrackProperty.BPM, propertyValue));
+            } else if (currentPropertyHashCode == TrackProperty.RATING_HASH_CODE) {
+                currentTrack.setRating(DataTypeParser.parseInteger(
+                        TrackProperty.RATING, propertyValue));
             } else {
                 logger
                         .debug("Supported Itunes Track Property Was Not Handled Correctly: "

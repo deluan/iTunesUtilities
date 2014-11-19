@@ -74,7 +74,8 @@ class TrackProperty
 	public static final String DISC_NUMBER = "Disc Number";
 	public static final String DISC_COUNT = "Disc Count";
 	public static final String BPM = "BPM";
-	
+	public static final String RATING = "Rating";
+
 	
 	/*
 	
@@ -123,4 +124,5 @@ class TrackProperty
 	public static final int DISC_NUMBER_HASH_CODE = DISC_NUMBER.hashCode();
 	public static final int DISC_COUNT_HASH_CODE = DISC_COUNT.hashCode();
 	public static final int BPM_HASH_CODE = BPM.hashCode();
+	public static final int RATING_HASH_CODE = RATING.hashCode();
 }

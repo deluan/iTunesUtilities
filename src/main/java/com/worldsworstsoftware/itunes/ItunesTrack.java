@@ -116,6 +116,8 @@ public class ItunesTrack {
     
     /** the track number in a given playlist */
     protected int playlistTrackNumber = -1;
+	private int rating = -1;
+
     /* if you add new properties here, add them to the copy constructor.. */
 
     public ItunesTrack() {        
@@ -148,7 +150,8 @@ public class ItunesTrack {
         fileFolderCount = obj.fileFolderCount;
         libraryFolderCount = obj.libraryFolderCount;
         playlistTrackNumber = obj.playlistTrackNumber;
-    }
+		rating = obj.rating;
+	}
     
     protected String copyString(String value)
     {
@@ -511,9 +514,12 @@ public class ItunesTrack {
 	{
 		BPM = bpm;
 	}
-    
-    
-    
-   
-    
+
+	public int getRating() {
+		return rating;
+	}
+
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
 }

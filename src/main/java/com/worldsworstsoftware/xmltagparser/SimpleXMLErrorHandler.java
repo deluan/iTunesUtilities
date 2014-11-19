@@ -27,11 +27,11 @@
 
 package com.worldsworstsoftware.xmltagparser;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
-
-import com.worldsworstsoftware.logging.StatusUpdateLogger;
 
 /**
  *
@@ -43,33 +43,27 @@ import com.worldsworstsoftware.logging.StatusUpdateLogger;
  *  http://www.oreilly.com/catalog/jenut2/chapter/ch19.html
  */
 class SimpleXMLErrorHandler implements ErrorHandler
-{    
-	private StatusUpdateLogger logger = null;
+{
+    private Logger logger = LoggerFactory.getLogger("SAX Error");
 
-    
-    /** Creates a new instance of XMLParserErrorHandler */
-    public SimpleXMLErrorHandler(StatusUpdateLogger logger)
-    {
-        this.logger = logger;
-    }
     
     /** This method is called when warnings occur */
     public void warning(SAXParseException exception)
     {
-    	logger.warn(getErrorMessage(exception), exception, true);
+    	logger.warn(getErrorMessage(exception), exception);
     }
     
     /** This method is called when errors occur */
     public void error(SAXParseException exception)
     {
-    	logger.error(getErrorMessage(exception), exception, true);
+    	logger.error(getErrorMessage(exception), exception);
     }
     
     /** This method is called when non-recoverable errors occur. */
     public void fatalError(SAXParseException exception) throws SAXException
     {
 
-    	logger.fatal(getErrorMessage(exception), exception, false);       
+    	logger.error(getErrorMessage(exception), exception);
         throw(exception);
     }
     
@@ -77,5 +71,5 @@ class SimpleXMLErrorHandler implements ErrorHandler
     {
     	return "XML parsing problem, line " + exception.getLineNumber() + ": " + exception.getMessage();
     }
-    
+
 }

@@ -6,8 +6,6 @@ import com.worldsworstsoftware.xmltagparser.SimpleXMLTagParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-//TODO: javadoc
-
 public class ItunesLibraryParser {
     private static Logger logger = LoggerFactory.getLogger(ItunesLibraryParser.class);
 
@@ -29,7 +27,7 @@ public class ItunesLibraryParser {
             throw new RuntimeException("Error occurred during library parsing: " + e.getMessage(), e);
         }
 
-        logger.debug("Now parsing tracks (" + "(" + library.getTracks().size() + " tracks and " + library.getPlaylists().size() + " playlists parsed.)" + " tracks parsed).");
+        logger.debug("Finished: " + library.getTracks().size() + " tracks and " + library.getPlaylists().size() + " playlists parsed.");
         logger.debug("Total Parsing Time: " + timer.getTimeElapsedSinceLastReset());
 
 

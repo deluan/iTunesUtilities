@@ -153,6 +153,8 @@ public class ItunesUtilitiesUsageSample {
 
         track = (ItunesTrack) tracks.get(0);
 
+        print("The chosen track is " + track.getName());
+
         print("We already know that a track's track number can be retrieved with track.getTrackNumber()..");
 
         print("For example, this track's track number is " + track.getTrackNumber());

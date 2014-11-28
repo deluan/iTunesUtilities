@@ -30,7 +30,6 @@
 package com.worldsworstsoftware.itunes;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 
@@ -103,8 +102,8 @@ public class ItunesPlaylist
     protected boolean podcasts = false;
     protected boolean tvShows = false;    
     
-    protected List playlistItems = new ArrayList();
-    protected List trackIDs = new ArrayList();
+    protected List<ItunesTrack> playlistItems = new ArrayList<ItunesTrack>();
+    protected List<Integer> trackIDs = new ArrayList<Integer>();
     
     /** a reference to the library this playlist is a part of */
     private ItunesLibrary library = null;
@@ -153,7 +152,7 @@ public class ItunesPlaylist
     
     public void addTrackID(int trackID)
     {
-    	trackIDs.add(new Integer(trackID));
+    	trackIDs.add(trackID);
     }
     
     public long getTotalTime()
@@ -174,22 +173,18 @@ public class ItunesPlaylist
         {
             int trackNumber = 1;                  
             //populate track array with tracks from library
-            Iterator it = trackIDs.iterator();
-            while (it.hasNext())
-            {
-                ItunesTrack track = library.getTrackById(((Integer) it.next()).intValue());
-                totalTime += track.getTotalTime();
-                totalSize += track.getSize();
-                //make a copy of the track because the tracknumber is diff for diff playlists
-                ItunesTrack trackCopy = new ItunesTrack(track);
-                trackCopy.setPlaylistTrackNumber(trackNumber);
-                playlistItems.add(trackCopy);
-                trackNumber++;
-            }
+			for (Integer trackID : trackIDs) {
+				ItunesTrack track = library.getTrackById(trackID);
+				totalTime += track.getTotalTime();
+				totalSize += track.getSize();
+				//make a copy of the track because the tracknumber is diff for diff playlists
+				ItunesTrack trackCopy = new ItunesTrack(track);
+				trackCopy.setPlaylistTrackNumber(trackNumber);
+				playlistItems.add(trackCopy);
+				trackNumber++;
+			}
         }
     }
-    
-   
 
 	public boolean isMaster()
 	{

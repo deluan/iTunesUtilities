@@ -10,6 +10,11 @@ class LibraryPropertyTagHandler extends BasePropertyTagHandler {
         super(library);
     }
 
+    @Override
+    protected Object getTarget() {
+        return library;
+    }
+
     protected void initializePropertyMap() {
         addPropertyToPropertyMap(LibraryProperty.MAJOR_VERSION, "majorVersion", Integer.class);
         addPropertyToPropertyMap(LibraryProperty.MINOR_VERSION, "majorVersion", Integer.class);

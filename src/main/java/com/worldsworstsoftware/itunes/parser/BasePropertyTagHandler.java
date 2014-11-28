@@ -6,6 +6,7 @@ import net.vidageek.mirror.dsl.Mirror;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,6 +32,8 @@ abstract class BasePropertyTagHandler implements PropertyTagHandler {
 
     protected abstract void initializePropertyMap();
 
+    protected abstract Object getTarget();
+
     protected void addPropertyToPropertyMap(String value, String name, Class type) {
         propertyMap.put(value, name);
         propertyTypeMap.put(value, type);
@@ -55,8 +58,10 @@ abstract class BasePropertyTagHandler implements PropertyTagHandler {
             String name = propertyMap.get(currentProperty);
             if (name != null) {
                 Class type = propertyTypeMap.get(currentProperty);
-                Object value = typeParser.parse(currentProperty, propertyValue, type);
-                new Mirror().on(library).invoke().setterFor(name).withValue(value);
+                if (type != null) {
+                    Object value = typeParser.parse(currentProperty, propertyValue, type);
+                    setPropertyValue(name, value);
+                }
             } else {
                 logger.warn("Supported Itunes Library Property Was Not Handled Correctly: " + currentProperty);
             }
@@ -64,6 +69,17 @@ abstract class BasePropertyTagHandler implements PropertyTagHandler {
             logger.error("Error occured during library property parsing: " + e.getMessage(), e);
         } finally {
             currentProperty = NO_PROPERTY;
+        }
+    }
+
+    private void setPropertyValue(String name, Object value) {
+        Mirror mirror = new Mirror();
+        Field fieldList = mirror.on(getTarget().getClass()).reflect().field(name + "s");
+        if (fieldList != null) {
+            name = name.substring(0, 1).toUpperCase() + name.substring(1);
+            mirror.on(getTarget()).invoke().method("add" + name).withArgs(value);
+        } else {
+            mirror.on(getTarget()).invoke().setterFor(name).withValue(value);
         }
     }
 

@@ -51,21 +51,4 @@ class PlaylistProperty
 	public static final String PODCASTS = "Podcasts";
 	public static final String TV_SHOWS = "TV Shows";
 	public static final String TRACK_ID = "Track ID";
-	
-	public static final int NAME_HASH_CODE = NAME.hashCode();
-	public static final int PLAYLIST_ID_HASH_CODE = PLAYLIST_ID.hashCode();
-	public static final int PLAYLIST_PERSISTENT_ID_HASH_CODE = PLAYLIST_PERSISTENT_ID.hashCode();
-	public static final int VISIBLE_HASH_CODE = VISIBLE.hashCode();
-	public static final int ALL_ITEMS_HASH_CODE = ALL_ITEMS.hashCode();
-	public static final int SMART_INFO_HASH_CODE = SMART_INFO.hashCode();
-	public static final int SMART_CRITERIA_HASH_CODE = SMART_CRITERIA.hashCode();
-	public static final int PLAYLIST_ITEMS_HASH_CODE = PLAYLIST_ITEMS.hashCode();
-	public static final int MASTER_HASH_CODE = MASTER.hashCode();
-	public static final int AUDIOBOOKS_HASH_CODE = AUDIOBOOKS.hashCode();
-	public static final int MOVIES_HASH_CODE = MOVIES.hashCode();
-	public static final int MUSIC_HASH_CODE = MUSIC.hashCode();
-	public static final int PARTY_SHUFFLE_HASH_CODE = PARTY_SHUFFLE.hashCode();
-	public static final int PODCASTS_HASH_CODE = PODCASTS.hashCode();
-	public static final int TV_SHOWS_HASH_CODE = TV_SHOWS.hashCode();
-	public static final int TRACK_ID_HASH_CODE = TRACK_ID.hashCode();
 }

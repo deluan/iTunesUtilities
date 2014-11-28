@@ -77,7 +77,7 @@ public class ItunesLibrary {
         tracks.put(new Integer(track.getTrackID()), track);
     }    
        
-    public ItunesTrack getTrackById(int trackId)
+    public ItunesTrack getTrackById(Integer trackId)
     {
     	Integer key = new Integer(trackId);
         if (!tracks.containsKey(key))

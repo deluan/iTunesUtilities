@@ -53,6 +53,8 @@ class TrackPropertyTagHandler extends BasePropertyTagHandler {
         addPropertyToPropertyMap("Disc Count", "discCount", Integer.class);
         addPropertyToPropertyMap("BPM", "BPM", Integer.class);
         addPropertyToPropertyMap("Rating", "rating", Integer.class);
+        addPropertyToPropertyMap("Album Rating", "albumRating", Integer.class);
+        addPropertyToPropertyMap("Album Rating Computed", "albumRatingComputed", Boolean.class);
     }
 
     @Override

@@ -115,10 +115,12 @@ public class ItunesTrack {
 	protected int discNumber = -1;
 	protected int discCount = -1;
 	protected int BPM = -1;
-    
-    /** the track number in a given playlist */
-    protected int playlistTrackNumber = -1;
 	private int rating = -1;
+	protected int albumRating = -1;
+	protected boolean albumRatingComputed = false;
+
+	/** the track number in a given playlist */
+	protected int playlistTrackNumber = -1;
 
     /* if you add new properties here, add them to the copy constructor.. */
 
@@ -527,5 +529,21 @@ public class ItunesTrack {
 
 	public void setRating(int rating) {
 		this.rating = rating;
+	}
+
+	public int getAlbumRating() {
+		return albumRating;
+	}
+
+	public void setAlbumRating(int albumRating) {
+		this.albumRating = albumRating;
+	}
+
+	public boolean getAlbumRatingComputed() {
+		return albumRatingComputed;
+	}
+
+	public void setAlbumRatingComputed(boolean albumRatingComputed) {
+		this.albumRatingComputed = albumRatingComputed;
 	}
 }

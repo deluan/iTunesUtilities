@@ -8,6 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 class ItunesTagHandler implements TagHandler {
+    private static final String PLAYLISTS = "Playlists";
+    private static final String TRACKS = "Tracks";
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     protected static final int MODE_PARSING_LIBRARY = 0;
@@ -93,7 +95,7 @@ class ItunesTagHandler implements TagHandler {
 
         switch (currentMode) {
             case MODE_PARSING_LIBRARY:
-                if (tag.getInnerText().equals(LibraryProperty.TRACKS)) {
+                if (tag.getInnerText().equals(TRACKS)) {
                     logger.debug("Parse time for Library Properties: " + performanceTimer.getTimeElapsedSinceLastReset());
                     performanceTimer.reset();
                     logger.debug("Now parsing tracks");
@@ -103,7 +105,7 @@ class ItunesTagHandler implements TagHandler {
                 }
                 break;
             case MODE_PARSING_TRACKS:
-                if (tag.getInnerText().equals(LibraryProperty.PLAYLISTS)) {
+                if (tag.getInnerText().equals(PLAYLISTS)) {
                     logger.debug("Parse time for tracks: " + performanceTimer.getTimeElapsedSinceLastReset());
                     performanceTimer.reset();
                     logger.debug("Now parsing playlists");

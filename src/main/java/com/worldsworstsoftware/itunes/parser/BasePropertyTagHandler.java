@@ -18,9 +18,7 @@ abstract class BasePropertyTagHandler implements PropertyTagHandler {
     protected ItunesLibrary library = null;
     protected String currentProperty = NO_PROPERTY;
 
-    protected Map<String, String> propertyNameMap = new HashMap<String, String>();
-    protected Map<String, Class> propertyTypeMap = new HashMap<String, Class>();
-    protected Map<String, String> propertySetterMap = new HashMap<String, String>();
+    protected Map<String, PropertyInfo> propertyMap = new HashMap<String, PropertyInfo>();
 
     protected DataTypeParser typeParser = new DataTypeParser();
 
@@ -35,18 +33,20 @@ abstract class BasePropertyTagHandler implements PropertyTagHandler {
     protected abstract Object getTarget();
 
     protected void addPropertyToPropertyMap(String xmlName, String name, Class type) {
-        propertyNameMap.put(xmlName, name);
-        propertyTypeMap.put(xmlName, type);
+        addPropertyToPropertyMap(xmlName, name, type, null);
     }
 
     protected void addPropertyToPropertyMap(String xmlName, String name, Class type, String setterName) {
-        propertyNameMap.put(xmlName, name);
-        propertyTypeMap.put(xmlName, type);
-        propertySetterMap.put(name, setterName);
+        PropertyInfo info = new PropertyInfo();
+        info.name = name;
+        info.type = type;
+        info.setter = setterName;
+
+        propertyMap.put(xmlName, info);
     }
 
     public void handlePropertyChange(String propertyName) {
-        if (propertyNameMap.containsKey(propertyName)) {
+        if (propertyMap.containsKey(propertyName)) {
             currentProperty = propertyName;
         } else {
             currentProperty = NO_PROPERTY;
@@ -71,14 +71,10 @@ abstract class BasePropertyTagHandler implements PropertyTagHandler {
                 return;
             }
 
-            String name = propertyNameMap.get(currentProperty);
-            if (name != null) {
-                Object value = parsePropertyValue(currentProperty, propertyValue);
-                if (value != null) {
-                    setPropertyValue(name, value);
-                }
-            } else {
-                logger.warn("Supported Itunes Library Property Was Not Handled Correctly: " + currentProperty);
+            PropertyInfo info = propertyMap.get(currentProperty);
+            if (info != null) {
+                Object value = parsePropertyValue(info, propertyValue);
+                setPropertyValue(info, value);
             }
         } catch (Exception e) {
             logger.error("Error occurred during library property parsing: " + e.getMessage(), e);
@@ -87,23 +83,33 @@ abstract class BasePropertyTagHandler implements PropertyTagHandler {
         }
     }
 
+    protected Object parsePropertyValue(PropertyInfo info, Tag propertyValue) throws Exception {
+        return typeParser.parse(currentProperty, propertyValue, info.type);
+    }
+
     protected Object parsePropertyValue(String propertyName, Tag propertyValue) throws Exception {
-        Class type = propertyTypeMap.get(propertyName);
-        if (type != null) {
-            return typeParser.parse(currentProperty, propertyValue, type);
+        PropertyInfo info = propertyMap.get(propertyName);
+        if (info != null) {
+            return typeParser.parse(currentProperty, propertyValue, info.type);
         }
         return null;
     }
 
-    private void setPropertyValue(String name, Object value) {
+    private void setPropertyValue(PropertyInfo info, Object value) {
         Object target = getTarget();
         Mirror mirror = new Mirror();
 
-        if (propertySetterMap.containsKey(name)) {
-            mirror.on(target).invoke().method(propertySetterMap.get(name)).withArgs(value);
+        if (info.setter != null) {
+            mirror.on(target).invoke().method(info.setter).withArgs(value);
         } else {
-            mirror.on(target).invoke().setterFor(name).withValue(value);
+            mirror.on(target).invoke().setterFor(info.name).withValue(value);
         }
+    }
+
+    class PropertyInfo {
+        String name;
+        Class type;
+        String setter;
     }
 
 }

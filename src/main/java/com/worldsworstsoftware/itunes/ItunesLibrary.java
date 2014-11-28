@@ -28,7 +28,6 @@
  */
 
 
-
 package com.worldsworstsoftware.itunes;
 
 import java.util.*;
@@ -36,13 +35,12 @@ import java.util.*;
 //TODO JAVADOC:
 
 /**
- *
  * @author jason
  */
 public class ItunesLibrary {
     
 /*
-	Example Itunes Library Properties:
+    Example Itunes Library Properties:
 	<key>Major Version</key><integer>1</integer>
 	<key>Minor Version</key><integer>1</integer>
 	<key>Application Version</key><string>7.0.1</string>
@@ -51,166 +49,141 @@ public class ItunesLibrary {
 	<key>Music Folder</key><string>file://localhost/E:/itunes/</string>
 	<key>Library Persistent ID</key><string>4EC2FAC25152379E</string>
 	
-*/	
-	
-	protected int majorVersion = -1;
-	protected int minorVersion = -1;
-	protected String applicationVersion = null;
-	protected int features = -1;
-	protected boolean showContentRatings = false;
-	protected String musicFolder = null;
-	protected String libraryPersistentID = null;
-	
-	/** this stores the path the library was parsed from */
-	protected String libraryXmlPath = null;
-	
-	protected Map tracks = new HashMap();
-	protected ArrayList playlists = new ArrayList();
-	protected Date date;
+*/
 
-	/** Creates a new instance of LibraryType */
+    protected int majorVersion = -1;
+    protected int minorVersion = -1;
+    protected String applicationVersion = null;
+    protected int features = -1;
+    protected boolean showContentRatings = false;
+    protected String musicFolder = null;
+    protected String libraryPersistentID = null;
+
+    /**
+     * this stores the path the library was parsed from
+     */
+    protected String libraryXmlPath = null;
+
+    protected Map<Integer, ItunesTrack> tracks = new HashMap<Integer, ItunesTrack>();
+    protected List<ItunesPlaylist> playlists = new ArrayList<ItunesPlaylist>();
+    protected Date date;
+
+    /**
+     * Creates a new instance of LibraryType
+     */
     public ItunesLibrary() {
     }
-    
-    public void addTrack(ItunesTrack track)
-    {        
-        tracks.put(new Integer(track.getTrackID()), track);
-    }    
-       
-    public ItunesTrack getTrackById(Integer trackId)
-    {
-    	Integer key = new Integer(trackId);
-        if (!tracks.containsKey(key))
-        {
-            throw new RuntimeException ("Can't find the track with id: " + trackId);
-        }
-        return (ItunesTrack) tracks.get(key);
+
+    public void addTrack(ItunesTrack track) {
+        tracks.put(track.getTrackID(), track);
     }
-    
-    public void addPlaylist(ItunesPlaylist playlist)
-    {
+
+    public ItunesTrack getTrackById(Integer trackId) {
+        if (!tracks.containsKey(trackId)) {
+            throw new RuntimeException("Can't find the track with id: " + trackId);
+        }
+        return tracks.get(trackId);
+    }
+
+    public void addPlaylist(ItunesPlaylist playlist) {
         playlists.add(playlist);
     }
-    
-    public ArrayList getPlaylists()
-    {
+
+    public List<ItunesPlaylist> getPlaylists() {
         return playlists;
     }
-    
-    public ItunesPlaylist findPlaylistByName(String playlistName)
-    {
-    	Iterator it = this.getPlaylists().iterator();
-        while (it.hasNext())
-        {
-            ItunesPlaylist playlist = (ItunesPlaylist) it.next();
-            if (playlist.getName().equals(playlistName))
-            {
+
+    public ItunesPlaylist findPlaylistByName(String playlistName) {
+        for (ItunesPlaylist playlist : this.getPlaylists()) {
+            if (playlist.getName().equals(playlistName)) {
                 return playlist;
-            }           
+            }
         }
-        throw new RuntimeException("Cannot find playlist with name \"" + playlistName + "\"");   
+        throw new RuntimeException("Cannot find playlist with name \"" + playlistName + "\"");
     }
-    
-    public ItunesPlaylist findPlayListByID(int playlistID)
-    {
-        Iterator it = this.getPlaylists().iterator();
-        while (it.hasNext())
-        {
-            ItunesPlaylist playlist = (ItunesPlaylist) it.next();
-            if (playlist.getPlaylistID() == playlistID)
-            {
+
+    public ItunesPlaylist findPlayListByID(int playlistID) {
+        for (ItunesPlaylist playlist : this.getPlaylists()) {
+            if (playlist.getPlaylistID() == playlistID) {
                 return playlist;
             }
         }
         throw new RuntimeException("Cannot find playlist with id \"" + playlistID + "\"");
     }
-    
-    public Map getTracks()
-    {
+
+    public Map getTracks() {
         return tracks;
     }
 
-	public int getMajorVersion()
-	{
-		return majorVersion;
-	}
+    public int getMajorVersion() {
+        return majorVersion;
+    }
 
-	public void setMajorVersion(int majorVersion)
-	{
-		this.majorVersion = majorVersion;
-	}
+    public void setMajorVersion(int majorVersion) {
+        this.majorVersion = majorVersion;
+    }
 
-	public int getMinorVersion()
-	{
-		return minorVersion;
-	}
+    public int getMinorVersion() {
+        return minorVersion;
+    }
 
-	public void setMinorVersion(int minorVersion)
-	{
-		this.minorVersion = minorVersion;
-	}
+    public void setMinorVersion(int minorVersion) {
+        this.minorVersion = minorVersion;
+    }
 
-	public String getApplicationVersion()
-	{
-		return applicationVersion;
-	}
+    public String getApplicationVersion() {
+        return applicationVersion;
+    }
 
-	public void setApplicationVersion(String applicationVersion)
-	{
-		this.applicationVersion = applicationVersion;
-	}
+    public void setApplicationVersion(String applicationVersion) {
+        this.applicationVersion = applicationVersion;
+    }
 
-	public int getFeatures()
-	{
-		return features;
-	}
+    public int getFeatures() {
+        return features;
+    }
 
-	public void setFeatures(int features)
-	{
-		this.features = features;
-	}
+    public void setFeatures(int features) {
+        this.features = features;
+    }
 
-	public boolean isShowContentRatings()
-	{
-		return showContentRatings;
-	}
+    public boolean isShowContentRatings() {
+        return showContentRatings;
+    }
 
-	public void setShowContentRatings(boolean showContentRatings)
-	{
-		this.showContentRatings = showContentRatings;
-	}
+    public void setShowContentRatings(boolean showContentRatings) {
+        this.showContentRatings = showContentRatings;
+    }
 
-	public String getMusicFolder()
-	{
-		return musicFolder;
-	}
+    public String getMusicFolder() {
+        return musicFolder;
+    }
 
-	public void setMusicFolder(String musicFolder)
-	{
-		this.musicFolder = musicFolder;
-	}
+    public void setMusicFolder(String musicFolder) {
+        this.musicFolder = musicFolder;
+    }
 
-	public String getLibraryPersistentID()
-	{
-		return libraryPersistentID;
-	}
+    public String getLibraryPersistentID() {
+        return libraryPersistentID;
+    }
 
-	public void setLibraryPersistentID(String libraryPersistentID)
-	{
-		this.libraryPersistentID = libraryPersistentID;
-	}
+    public void setLibraryPersistentID(String libraryPersistentID) {
+        this.libraryPersistentID = libraryPersistentID;
+    }
 
-	public String getLibraryXmlPath()
-	{
-		return libraryXmlPath;
-	}
+    public String getLibraryXmlPath() {
+        return libraryXmlPath;
+    }
 
-	public void setLibraryXmlPath(String libraryXmlPath)
-	{
-		this.libraryXmlPath = libraryXmlPath;
-	}
+    public void setLibraryXmlPath(String libraryXmlPath) {
+        this.libraryXmlPath = libraryXmlPath;
+    }
 
-	public Date getDate() { return date; }
+    public Date getDate() {
+        return date;
+    }
 
-	public void setDate(Date date) { this.date = date; }
+    public void setDate(Date date) {
+        this.date = date;
+    }
 }

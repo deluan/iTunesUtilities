@@ -86,29 +86,29 @@ public class ItunesPlaylist
 	<key>TV Shows</key><true/>
  */
 	
-    protected String name = null;
-    protected int playlistID = -1;
-    protected String playlistPersistentId = null;
-    protected boolean visible = false;
-    protected boolean allItems = false;
-    protected byte[] smartInfo = null;
-    protected byte[] smartCriteria = null;
+    private String name = null;
+    private int playlistID = -1;
+    private String playlistPersistentId = null;
+    private boolean visible = false;
+    private boolean allItems = false;
+    private byte[] smartInfo = null;
+    private byte[] smartCriteria = null;
        
-    protected boolean master = false;
-    protected boolean audiobooks = false;
-    protected boolean movies = false;
-    protected boolean music = false;
-    protected boolean partyShuffle = false;
-    protected boolean podcasts = false;
-    protected boolean tvShows = false;
-	protected boolean folder;
-	protected boolean iTunesU;
-	protected boolean purchasedMusic;
-	protected String parentPersistentID;
-	protected Integer distinguishedKind;
+    private boolean master = false;
+    private boolean audiobooks = false;
+    private boolean movies = false;
+    private boolean music = false;
+    private boolean partyShuffle = false;
+    private boolean podcasts = false;
+    private boolean tvShows = false;
+	private boolean folder;
+	private boolean iTunesU;
+	private boolean purchasedMusic;
+	private String parentPersistentID;
+	private Integer distinguishedKind;
     
-    protected List<ItunesTrack> playlistItems = new ArrayList<ItunesTrack>();
-    protected List<Integer> trackIDs = new ArrayList<Integer>();
+    private List<ItunesTrack> playlistItems = new ArrayList<ItunesTrack>();
+    private List<Integer> trackIDs = new ArrayList<Integer>();
     
     /** a reference to the library this playlist is a part of */
     private ItunesLibrary library = null;

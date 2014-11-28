@@ -51,22 +51,21 @@ public class ItunesLibrary {
 	
 */
 
-    protected int majorVersion = -1;
-    protected int minorVersion = -1;
-    protected String applicationVersion = null;
-    protected int features = -1;
-    protected boolean showContentRatings = false;
-    protected String musicFolder = null;
-    protected String libraryPersistentID = null;
+    private int majorVersion = -1;
+    private int minorVersion = -1;
+    private String applicationVersion = null;
+    private int features = -1;
+    private boolean showContentRatings = false;
+    private String musicFolder = null;
+    private String libraryPersistentID = null;
+    private Date date;
 
     /**
      * this stores the path the library was parsed from
      */
-    protected String libraryXmlPath = null;
-
-    protected Map<Integer, ItunesTrack> tracks = new HashMap<Integer, ItunesTrack>();
-    protected List<ItunesPlaylist> playlists = new ArrayList<ItunesPlaylist>();
-    protected Date date;
+    private String libraryXmlPath = null;
+    private Map<Integer, ItunesTrack> tracks = new HashMap<Integer, ItunesTrack>();
+    private List<ItunesPlaylist> playlists = new ArrayList<ItunesPlaylist>();
 
     /**
      * Creates a new instance of LibraryType

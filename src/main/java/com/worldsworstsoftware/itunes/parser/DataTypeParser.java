@@ -54,8 +54,7 @@ class DataTypeParser {
         return type.cast(converter.convert(propertyName, propertyValue));
     }
 
-    // TODO Turn all parse* methods to private
-    public static Integer parseInteger(String propertyName, Tag propertyValue) throws Exception {
+    private Integer parseInteger(String propertyName, Tag propertyValue) throws Exception {
         if (!propertyValue.getName().equals(TagType.INTEGER)) {
             throwTypeMismatchError(propertyName, TagType.INTEGER, propertyValue);
         }
@@ -67,7 +66,7 @@ class DataTypeParser {
         }
     }
 
-    public static Long parseLong(String propertyName, Tag propertyValue) throws Exception {
+    private Long parseLong(String propertyName, Tag propertyValue) throws Exception {
         if (!propertyValue.getName().equals(TagType.INTEGER)) {
             throwTypeMismatchError(propertyName, TagType.INTEGER, propertyValue);
             return Long.MIN_VALUE;
@@ -80,7 +79,7 @@ class DataTypeParser {
         }
     }
 
-    public static Date parseDate(String propertyName, Tag propertyValue) throws Exception {
+    private Date parseDate(String propertyName, Tag propertyValue) throws Exception {
         if (!propertyValue.getName().equals(TagType.DATE)) {
             throwTypeMismatchError(propertyName, TagType.DATE, propertyValue);
         }
@@ -88,7 +87,7 @@ class DataTypeParser {
         return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").parse(propertyValue.getInnerText());
     }
 
-    public static String parseString(String propertyName, Tag propertyValue) throws Exception {
+    private String parseString(String propertyName, Tag propertyValue) throws Exception {
         if (!propertyValue.getName().equals(TagType.STRING)) {
             throwTypeMismatchError(propertyName, TagType.STRING, propertyValue);
         }
@@ -96,7 +95,7 @@ class DataTypeParser {
         return propertyValue.getInnerText();
     }
 
-    public static Boolean parseBoolean(String propertyName, Tag propertyValue) throws Exception {
+    private Boolean parseBoolean(String propertyName, Tag propertyValue) throws Exception {
         if (!propertyValue.getName().equals(TagType.TRUE) && !propertyValue.getName().equals(TagType.FALSE)) {
             throwTypeMismatchError(propertyName, "boolean value of 'true' or 'false'", propertyValue);
         }
@@ -110,7 +109,7 @@ class DataTypeParser {
         }
     }
 
-    public static byte[] parseBytes(String propertyName, Tag propertyValue) throws Exception {
+    private byte[] parseBytes(String propertyName, Tag propertyValue) throws Exception {
         if (!propertyValue.getName().equals(TagType.DATA)) {
             throwTypeMismatchError(propertyName, TagType.DATA, propertyValue);
         }
@@ -118,7 +117,7 @@ class DataTypeParser {
         return propertyValue.getInnerText().getBytes();
     }
 
-    public static void throwTypeMismatchError(String propertyName, String dataType, Tag propertyValue) throws Exception {
+    private void throwTypeMismatchError(String propertyName, String dataType, Tag propertyValue) throws Exception {
         throw new Exception("Parsing Exception while parsing property \"" + propertyName + "\", property value found is not " + dataType + ": " + propertyValue);
     }
 

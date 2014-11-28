@@ -7,10 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 class PlaylistPropertyTagHandler extends BasePropertyTagHandler {
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
-
     protected int playlistParseCount = 0;
-    private ItunesPlaylist currentPlaylist;
+    protected ItunesPlaylist currentPlaylist;
 
     public PlaylistPropertyTagHandler(ItunesLibrary library) {
         super(library);
@@ -32,7 +30,7 @@ class PlaylistPropertyTagHandler extends BasePropertyTagHandler {
         addPropertyToPropertyMap(PlaylistProperty.PARTY_SHUFFLE, "partyShuffle", Boolean.class);
         addPropertyToPropertyMap(PlaylistProperty.PODCASTS, "podcasts", Boolean.class);
         addPropertyToPropertyMap(PlaylistProperty.TV_SHOWS, "tvShows", Boolean.class);
-        addPropertyToPropertyMap(PlaylistProperty.TRACK_ID, "trackID", Integer.class);
+        addPropertyToPropertyMap(PlaylistProperty.TRACK_ID, "trackID", Integer.class, "addTrackID");
         addPropertyToPropertyMap(PlaylistProperty.PLAYLIST_ITEMS, "", null);
     }
 

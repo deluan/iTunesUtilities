@@ -48,8 +48,8 @@ class TrackProperty
 	public static final String KIND = "Kind";
 	public static final String SIZE = "Size";
 	public static final String TOTAL_TIME = "Total Time";
-	public static final String NUMBER = "Track Number";
-	public static final String COUNT = "Track Count";
+	public static final String TRACK_NUMBER = "Track Number";
+	public static final String TRACK_COUNT = "Track Count";
 	public static final String YEAR = "Year";
 	public static final String DATE_MODIFIED = "Date Modified";
 	public static final String DATE_ADDED = "Date Added";
@@ -89,40 +89,4 @@ class TrackProperty
 	<key>Disc Count</key><integer>2</integer>
 	<key>BPM</key><integer>192</integer>
 	 */
-	
-	public static final int TRACK_ID_HASH_CODE = TRACK_ID.hashCode();
-	public static final int NAME_HASH_CODE = NAME.hashCode();
-	public static final int ARTIST_HASH_CODE = ARTIST.hashCode();
-	public static final int ALBUM_HASH_CODE = ALBUM.hashCode();
-	public static final int GENRE_HASH_CODE = GENRE.hashCode();
-	public static final int KIND_HASH_CODE = KIND.hashCode();
-	public static final int SIZE_HASH_CODE = SIZE.hashCode();
-	public static final int TOTAL_TIME_HASH_CODE = TOTAL_TIME.hashCode();
-	public static final int NUMBER_HASH_CODE = NUMBER.hashCode();
-	public static final int COUNT_HASH_CODE = COUNT.hashCode();
-	public static final int YEAR_HASH_CODE = YEAR.hashCode();
-	public static final int DATE_MODIFIED_HASH_CODE = DATE_MODIFIED.hashCode();
-	public static final int DATE_ADDED_HASH_CODE = DATE_ADDED.hashCode();
-	public static final int BIT_RATE_HASH_CODE = BIT_RATE.hashCode();
-	public static final int SAMPLE_RATE_HASH_CODE = SAMPLE_RATE.hashCode();
-	public static final int COMMENTS_HASH_CODE = COMMENTS.hashCode();
-	public static final int PLAY_COUNT_HASH_CODE = PLAY_COUNT.hashCode();
-	public static final int PLAY_DATE_HASH_CODE = PLAY_DATE.hashCode();
-	public static final int PLAY_DATE_UTC_HASH_CODE = PLAY_DATE_UTC.hashCode();
-	public static final int PERSISTENT_ID_HASH_CODE = PERSISTENT_ID.hashCode();
-	public static final int TRACK_TYPE_HASH_CODE = TRACK_TYPE.hashCode();
-	public static final int LOCATION_HASH_CODE = LOCATION.hashCode();
-	public static final int FILE_FOLDER_COUNT_HASH_CODE = FILE_FOLDER_COUNT.hashCode();
-	public static final int LIBRARY_FOLDER_COUNT_HASH_CODE = LIBRARY_FOLDER_COUNT.hashCode();	
-	public static final int DISABLED_HASH_CODE = DISABLED.hashCode();
-	public static final int SKIP_COUNT_HASH_CODE = SKIP_COUNT.hashCode();
-	public static final int SKIP_DATE_HASH_CODE = SKIP_DATE.hashCode();
-	public static final int COMPOSER_HASH_CODE = COMPOSER.hashCode();
-	public static final int ALBUM_ARTIST_HASH_CODE = ALBUM_ARTIST.hashCode();
-	public static final int ARTWORK_COUNT_HASH_CODE = ARTWORK_COUNT.hashCode();
-	public static final int GROUPING_HASH_CODE = GROUPING.hashCode();
-	public static final int DISC_NUMBER_HASH_CODE = DISC_NUMBER.hashCode();
-	public static final int DISC_COUNT_HASH_CODE = DISC_COUNT.hashCode();
-	public static final int BPM_HASH_CODE = BPM.hashCode();
-	public static final int RATING_HASH_CODE = RATING.hashCode();
 }

@@ -60,6 +60,16 @@ class TrackPropertyTagHandler extends BasePropertyTagHandler {
         addPropertyToPropertyMap("Sort Artist", "sortArtist", String.class);
         addPropertyToPropertyMap("Sort Album", "sortAlbum", String.class);
         addPropertyToPropertyMap("Sort Album Artist", "sortAlbumArtist", String.class);
+        addPropertyToPropertyMap("Sort Composer", "sortComposer", String.class);
+        addPropertyToPropertyMap("Part Of Gapless Album", "partOfGaplessAlbum", Boolean.class);
+        addPropertyToPropertyMap("Purchased", "purchased", Boolean.class);
+        addPropertyToPropertyMap("Clean", "clean", Boolean.class);
+        addPropertyToPropertyMap("Has Video", "hasVideo", Boolean.class);
+        addPropertyToPropertyMap("HD", "HD", Boolean.class);
+        addPropertyToPropertyMap("Music Video", "musicVideo", Boolean.class);
+        addPropertyToPropertyMap("Volume Adjustment", "volumeAdjustment", Integer.class);
+        addPropertyToPropertyMap("Start Time", "startTime", Integer.class);
+        addPropertyToPropertyMap("Stop Time", "stopTime", Integer.class);
     }
 
     @Override

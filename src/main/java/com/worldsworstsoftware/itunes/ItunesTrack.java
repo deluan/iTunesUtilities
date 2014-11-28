@@ -115,14 +115,24 @@ public class ItunesTrack {
 	protected int discNumber = -1;
 	protected int discCount = -1;
 	protected int BPM = -1;
-	private int rating = -1;
+	protected int rating = -1;
 	protected int albumRating = -1;
-	protected boolean albumRatingComputed = false;
-	protected boolean compilation = false;
+	protected boolean albumRatingComputed;
+	protected boolean compilation;
 	protected String sortName;
 	protected String sortArtist;
 	protected String sortAlbum;
 	protected String sortAlbumArtist;
+	protected String sortComposer;
+	protected boolean purchased;
+	protected boolean clean;
+	protected boolean partOfGaplessAlbum;
+	protected boolean hasVideo;
+	protected boolean HD;
+	protected boolean musicVideo;
+	protected int volumeAdjustment;
+	protected int startTime;
+	protected int stopTime;
 
 
 	/** the track number in a given playlist */
@@ -591,5 +601,85 @@ public class ItunesTrack {
 
 	public void setSortAlbumArtist(String sortAlbumArtist) {
 		this.sortAlbumArtist = sortAlbumArtist;
+	}
+
+	public boolean isPurchased() {
+		return purchased;
+	}
+
+	public void setPurchased(boolean purchased) {
+		this.purchased = purchased;
+	}
+
+	public boolean isClean() {
+		return clean;
+	}
+
+	public void setClean(boolean clean) {
+		this.clean = clean;
+	}
+
+	public boolean isPartOfGaplessAlbum() {
+		return partOfGaplessAlbum;
+	}
+
+	public void setPartOfGaplessAlbum(boolean partOfGaplessAlbum) {
+		this.partOfGaplessAlbum = partOfGaplessAlbum;
+	}
+
+	public String getSortComposer() {
+		return sortComposer;
+	}
+
+	public void setSortComposer(String sortComposer) {
+		this.sortComposer = sortComposer;
+	}
+
+	public int getVolumeAdjustment() {
+		return volumeAdjustment;
+	}
+
+	public void setVolumeAdjustment(int volumeAdjustment) {
+		this.volumeAdjustment = volumeAdjustment;
+	}
+
+	public int getStopTime() {
+		return stopTime;
+	}
+
+	public void setStopTime(int stopTime) {
+		this.stopTime = stopTime;
+	}
+
+	public int getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(int startTime) {
+		this.startTime = startTime;
+	}
+
+	public boolean isHasVideo() {
+		return hasVideo;
+	}
+
+	public void setHasVideo(boolean hasVideo) {
+		this.hasVideo = hasVideo;
+	}
+
+	public boolean isHD() {
+		return HD;
+	}
+
+	public void setHD(boolean HD) {
+		this.HD = HD;
+	}
+
+	public boolean isMusicVideo() {
+		return musicVideo;
+	}
+
+	public void setMusicVideo(boolean musicVideo) {
+		this.musicVideo = musicVideo;
 	}
 }

@@ -30,6 +30,11 @@ class PlaylistPropertyTagHandler extends BasePropertyTagHandler {
         addPropertyToPropertyMap("Party Shuffle", "partyShuffle", Boolean.class);
         addPropertyToPropertyMap("Podcasts", "podcasts", Boolean.class);
         addPropertyToPropertyMap("TV Shows", "tvShows", Boolean.class);
+        addPropertyToPropertyMap("Folder", "folder", Boolean.class);
+        addPropertyToPropertyMap("iTunesU", "iTunesU", Boolean.class);
+        addPropertyToPropertyMap("Purchased Music", "purchasedMusic", Boolean.class);
+        addPropertyToPropertyMap("Parent Persistent ID", "parentPersistentID", String.class);
+        addPropertyToPropertyMap("Distinguished Kind", "distinguishedKind", Integer.class);
         addPropertyToPropertyMap("Track ID", "trackID", Integer.class, "addTrackID");
         addPropertyToPropertyMap("Playlist Items", "", null);
     }

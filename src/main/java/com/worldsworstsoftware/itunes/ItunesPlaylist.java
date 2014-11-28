@@ -100,7 +100,12 @@ public class ItunesPlaylist
     protected boolean music = false;
     protected boolean partyShuffle = false;
     protected boolean podcasts = false;
-    protected boolean tvShows = false;    
+    protected boolean tvShows = false;
+	protected boolean folder;
+	protected boolean iTunesU;
+	protected boolean purchasedMusic;
+	protected String parentPersistentID;
+	protected Integer distinguishedKind;
     
     protected List<ItunesTrack> playlistItems = new ArrayList<ItunesTrack>();
     protected List<Integer> trackIDs = new ArrayList<Integer>();
@@ -324,9 +329,45 @@ public class ItunesPlaylist
 	public void setSmartCriteria(byte[] smartCriteria)
 	{
 		this.smartCriteria = smartCriteria;
-	}	
-	
-	
-	
-    
+	}
+
+	public boolean isFolder() {
+		return folder;
+	}
+
+	public void setFolder(boolean folder) {
+		this.folder = folder;
+	}
+
+	public boolean isITunesU() {
+		return iTunesU;
+	}
+
+	public void setITunesU(boolean iTunesU) {
+		this.iTunesU = iTunesU;
+	}
+
+	public boolean isPurchasedMusic() {
+		return purchasedMusic;
+	}
+
+	public void setPurchasedMusic(boolean purchasedMusic) {
+		this.purchasedMusic = purchasedMusic;
+	}
+
+	public String getParentPersistentID() {
+		return parentPersistentID;
+	}
+
+	public void setParentPersistentID(String parentPersistentID) {
+		this.parentPersistentID = parentPersistentID;
+	}
+
+	public Integer getDistinguishedKind() {
+		return distinguishedKind;
+	}
+
+	public void setDistinguishedKind(Integer distinguishedKind) {
+		this.distinguishedKind = distinguishedKind;
+	}
 }

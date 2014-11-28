@@ -31,10 +31,7 @@
 
 package com.worldsworstsoftware.itunes;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 //TODO JAVADOC:
 
@@ -69,7 +66,9 @@ public class ItunesLibrary {
 	
 	protected Map tracks = new HashMap();
 	protected ArrayList playlists = new ArrayList();
-    /** Creates a new instance of LibraryType */
+	protected Date date;
+
+	/** Creates a new instance of LibraryType */
     public ItunesLibrary() {
     }
     
@@ -210,6 +209,8 @@ public class ItunesLibrary {
 	{
 		this.libraryXmlPath = libraryXmlPath;
 	}
-    
-    
+
+	public Date getDate() { return date; }
+
+	public void setDate(Date date) { this.date = date; }
 }

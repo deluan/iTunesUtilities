@@ -6,6 +6,7 @@ import net.vidageek.mirror.dsl.Mirror;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,6 +33,7 @@ class LibraryPropertyTagHandler implements PropertyTagHandler {
     private void initializePropertyMap() {
         addPropertyToPropertyMap(LibraryProperty.MAJOR_VERSION, "majorVersion", Integer.class);
         addPropertyToPropertyMap(LibraryProperty.MINOR_VERSION, "majorVersion", Integer.class);
+        addPropertyToPropertyMap(LibraryProperty.DATE, "date", Date.class);
         addPropertyToPropertyMap(LibraryProperty.APPLICATION_VERSION, "applicationVersion", String.class);
         addPropertyToPropertyMap(LibraryProperty.FEATURES, "features", Integer.class);
         addPropertyToPropertyMap(LibraryProperty.SHOW_CONTENT_RATINGS, "showContentRatings", Boolean.class);
@@ -69,7 +71,7 @@ class LibraryPropertyTagHandler implements PropertyTagHandler {
                 logger.warn("Supported Itunes Library Property Was Not Handled Correctly: " + currentProperty);
             }
         } catch (Exception e) {
-            logger.error("Error occured during library property parsing: " + e.getMessage(), e, true);
+            logger.error("Error occured during library property parsing: " + e.getMessage(), e);
         } finally {
             currentProperty = NO_PROPERTY;
         }

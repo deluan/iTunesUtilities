@@ -2,6 +2,7 @@ package com.worldsworstsoftware.itunes.parser;
 
 import com.worldsworstsoftware.xmltagparser.Tag;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,8 +24,8 @@ class DataTypeParser {
             }
         });
 
-        converterMap.put(Date.class, new Converter<String>() {
-            public String convert(String propertyName, Tag propertyValue) throws Exception {
+        converterMap.put(Date.class, new Converter<Date>() {
+            public Date convert(String propertyName, Tag propertyValue) throws Exception {
                 return parseDate(propertyName, propertyValue);
             }
         });
@@ -79,12 +80,12 @@ class DataTypeParser {
         }
     }
 
-    public static String parseDate(String propertyName, Tag propertyValue) throws Exception {
+    public static Date parseDate(String propertyName, Tag propertyValue) throws Exception {
         if (!propertyValue.getName().equals(TagType.DATE)) {
             throwTypeMismatchError(propertyName, TagType.DATE, propertyValue);
         }
 
-        return propertyValue.getInnerText();
+        return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").parse(propertyValue.getInnerText());
     }
 
     public static String parseString(String propertyName, Tag propertyValue) throws Exception {

@@ -91,6 +91,8 @@ public class ItunesUtilitiesUsageSample {
         print("Let's see here, it looks like your library is for Itunes version " +
                 library.getApplicationVersion());
 
+        print(".. and was last updated at " + library.getDate());
+
         print(".. and your library has " + library.getTracks().size() + " tracks and " +
                 library.getPlaylists().size() + " playlists.");
 

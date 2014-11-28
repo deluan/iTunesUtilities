@@ -15,6 +15,7 @@ class LibraryProperty
 
 	public static final String MAJOR_VERSION = "Major Version";
 	public static final String MINOR_VERSION = "Minor Version";
+	public static final String DATE = "Date";
 	public static final String APPLICATION_VERSION = "Application Version";
 	public static final String FEATURES = "Features";
 	public static final String SHOW_CONTENT_RATINGS = "Show Content Ratings";

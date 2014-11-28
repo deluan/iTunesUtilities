@@ -34,7 +34,7 @@ class ItunesTagHandler implements TagHandler {
     }
 
     public void handleTag(Tag tag) {
-        if (handleModeSwitch(tag) == true) {
+        if (handleModeSwitch(tag)) {
             //this tag caused a parsing mode switch, the tag has been handled.
             return;
         }

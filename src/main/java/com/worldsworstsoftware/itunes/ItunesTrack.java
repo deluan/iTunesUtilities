@@ -31,6 +31,8 @@ package com.worldsworstsoftware.itunes;
 
 //TODO JAVADOC:
 
+import java.util.Date;
+
 /**
  *
  * @author jason
@@ -90,14 +92,14 @@ public class ItunesTrack {
     protected int trackNumber = -1;
     protected int trackCount = -1;
     protected int year = -1;
-    protected String dateModified = null;
-    protected String dateAdded = null;
+    protected Date dateModified = null;
+    protected Date dateAdded = null;
     protected int bitRate = -1;
     protected int sampleRate = -1;
     protected String comments = null;
     protected int playCount = -1;
     protected long playDate = -1;
-    protected String playDateUTC = null;
+    protected Date playDateUTC = null;
     protected String persistentID = null;
     protected String trackType = null;
     protected String location = null;
@@ -105,7 +107,7 @@ public class ItunesTrack {
     protected int libraryFolderCount = -1;
     protected boolean disabled = false;        	
 	protected int skipCount = -1;
-	protected String skipDate = null;
+	protected Date skipDate = null;
 	protected String composer = null;
 	protected String albumArtist = null;
 	protected int artworkCount = -1;
@@ -136,14 +138,14 @@ public class ItunesTrack {
         trackNumber = obj.trackNumber;
         trackCount = obj.trackCount;
         year = obj.year;
-        dateModified = copyString(obj.dateModified);
-        dateAdded = copyString(obj.dateAdded);
+        dateModified = copyDate(obj.dateModified);
+        dateAdded = copyDate(obj.dateAdded);
         bitRate = obj.bitRate;
         sampleRate = obj.sampleRate;
         comments = copyString(obj.comments);
         playCount = obj.playCount;
         playDate = obj.playDate;
-        playDateUTC = copyString(obj.playDateUTC);
+        playDateUTC = copyDate(obj.playDateUTC);
         persistentID = copyString(obj.persistentID);
         trackType = copyString(obj.trackType);
         location = copyString(obj.location);
@@ -152,7 +154,11 @@ public class ItunesTrack {
         playlistTrackNumber = obj.playlistTrackNumber;
 		rating = obj.rating;
 	}
-    
+
+	protected Date copyDate(Date value) {
+		return (value == null) ? null : new Date(value.getTime());
+	}
+
     protected String copyString(String value)
     {
     	if (value == null)
@@ -275,22 +281,22 @@ public class ItunesTrack {
 		this.year = year;
 	}
 
-	public String getDateModified()
+	public Date getDateModified()
 	{
 		return dateModified;
 	}
 
-	public void setDateModified(String dateModified)
+	public void setDateModified(Date dateModified)
 	{
 		this.dateModified = dateModified;
 	}
 
-	public String getDateAdded()
+	public Date getDateAdded()
 	{
 		return dateAdded;
 	}
 
-	public void setDateAdded(String dateAdded)
+	public void setDateAdded(Date dateAdded)
 	{
 		this.dateAdded = dateAdded;
 	}
@@ -345,12 +351,12 @@ public class ItunesTrack {
 		this.playDate = playDate;
 	}
 
-	public String getPlayDateUTC()
+	public Date getPlayDateUTC()
 	{
 		return playDateUTC;
 	}
 
-	public void setPlayDateUTC(String playDateUTC)
+	public void setPlayDateUTC(Date playDateUTC)
 	{
 		this.playDateUTC = playDateUTC;
 	}
@@ -435,12 +441,12 @@ public class ItunesTrack {
 		this.skipCount = skipCount;
 	}
 
-	public String getSkipDate()
+	public Date getSkipDate()
 	{
 		return skipDate;
 	}
 
-	public void setSkipDate(String skipDate)
+	public void setSkipDate(Date skipDate)
 	{
 		this.skipDate = skipDate;
 	}

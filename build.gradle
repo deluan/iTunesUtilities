@@ -23,6 +23,9 @@ dependencies {
 }
 
 idea {
+    project {
+        jdkName = '1.7'
+    }
     module {
         name = 'iTunesUtilities'
         excludeDirs += [file('gradle'), file('.idea')]

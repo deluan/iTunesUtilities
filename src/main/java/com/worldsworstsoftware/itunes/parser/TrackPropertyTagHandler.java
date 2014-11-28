@@ -5,9 +5,10 @@ import com.worldsworstsoftware.itunes.ItunesTrack;
 import com.worldsworstsoftware.xmltagparser.Tag;
 
 import java.util.Date;
-import java.util.Map;
 
 class TrackPropertyTagHandler extends BasePropertyTagHandler {
+    public static final String TRACK_ID = "Track ID";
+
     protected int trackParseCount = 0;
     protected ItunesTrack currentTrack;
 
@@ -17,41 +18,41 @@ class TrackPropertyTagHandler extends BasePropertyTagHandler {
 
     @Override
     protected void initializePropertyMap() {
-        addPropertyToPropertyMap(TrackProperty.TRACK_ID, "trackID", Integer.class);
-        addPropertyToPropertyMap(TrackProperty.NAME, "name", String.class);
-        addPropertyToPropertyMap(TrackProperty.ARTIST, "artist", String.class);
-        addPropertyToPropertyMap(TrackProperty.ALBUM, "album", String.class);
-        addPropertyToPropertyMap(TrackProperty.GENRE, "genre", String.class);
-        addPropertyToPropertyMap(TrackProperty.KIND, "kind", String.class);
-        addPropertyToPropertyMap(TrackProperty.SIZE, "size", Long.class);
-        addPropertyToPropertyMap(TrackProperty.TOTAL_TIME, "totalTime", Integer.class);
-        addPropertyToPropertyMap(TrackProperty.TRACK_NUMBER, "trackNumber", Integer.class);
-        addPropertyToPropertyMap(TrackProperty.TRACK_COUNT, "trackCount", Integer.class);
-        addPropertyToPropertyMap(TrackProperty.YEAR, "year", Integer.class);
-        addPropertyToPropertyMap(TrackProperty.DATE_MODIFIED, "dateModified", Date.class);
-        addPropertyToPropertyMap(TrackProperty.DATE_ADDED, "dateAdded", Date.class);
-        addPropertyToPropertyMap(TrackProperty.BIT_RATE, "bitRate", Integer.class);
-        addPropertyToPropertyMap(TrackProperty.SAMPLE_RATE, "sampleRate", Integer.class);
-        addPropertyToPropertyMap(TrackProperty.COMMENTS, "comments", String.class);
-        addPropertyToPropertyMap(TrackProperty.PLAY_COUNT, "playCount", Integer.class);
-        addPropertyToPropertyMap(TrackProperty.PLAY_DATE, "playDate", Long.class);
-        addPropertyToPropertyMap(TrackProperty.PLAY_DATE_UTC, "playDateUTC", Date.class);
-        addPropertyToPropertyMap(TrackProperty.PERSISTENT_ID, "persistentID", String.class);
-        addPropertyToPropertyMap(TrackProperty.TRACK_TYPE, "trackType", String.class);
-        addPropertyToPropertyMap(TrackProperty.LOCATION, "location", String.class);
-        addPropertyToPropertyMap(TrackProperty.FILE_FOLDER_COUNT, "fileFolderCount", Integer.class);
-        addPropertyToPropertyMap(TrackProperty.LIBRARY_FOLDER_COUNT, "libraryFolderCount", Integer.class);
-        addPropertyToPropertyMap(TrackProperty.DISABLED, "disabled", Boolean.class);
-        addPropertyToPropertyMap(TrackProperty.SKIP_COUNT, "skipCount", Integer.class);
-        addPropertyToPropertyMap(TrackProperty.SKIP_DATE, "skipDate", Date.class);
-        addPropertyToPropertyMap(TrackProperty.COMPOSER, "composer", String.class);
-        addPropertyToPropertyMap(TrackProperty.ALBUM_ARTIST, "albumArtist", String.class);
-        addPropertyToPropertyMap(TrackProperty.ARTWORK_COUNT, "artworkCount", Integer.class);
-        addPropertyToPropertyMap(TrackProperty.GROUPING, "grouping", String.class);
-        addPropertyToPropertyMap(TrackProperty.DISC_NUMBER, "discNumber", Integer.class);
-        addPropertyToPropertyMap(TrackProperty.DISC_COUNT, "discCount", Integer.class);
-        addPropertyToPropertyMap(TrackProperty.BPM, "BPM", Integer.class);
-        addPropertyToPropertyMap(TrackProperty.RATING, "rating", Integer.class);
+        addPropertyToPropertyMap(TRACK_ID, "trackID", Integer.class);
+        addPropertyToPropertyMap("Name", "name", String.class);
+        addPropertyToPropertyMap("Artist", "artist", String.class);
+        addPropertyToPropertyMap("Album", "album", String.class);
+        addPropertyToPropertyMap("Genre", "genre", String.class);
+        addPropertyToPropertyMap("Kind", "kind", String.class);
+        addPropertyToPropertyMap("Size", "size", Long.class);
+        addPropertyToPropertyMap("Total Time", "totalTime", Integer.class);
+        addPropertyToPropertyMap("Track Number", "trackNumber", Integer.class);
+        addPropertyToPropertyMap("Track Count", "trackCount", Integer.class);
+        addPropertyToPropertyMap("Year", "year", Integer.class);
+        addPropertyToPropertyMap("Date Modified", "dateModified", Date.class);
+        addPropertyToPropertyMap("Date Added", "dateAdded", Date.class);
+        addPropertyToPropertyMap("Bit Rate", "bitRate", Integer.class);
+        addPropertyToPropertyMap("Sample Rate", "sampleRate", Integer.class);
+        addPropertyToPropertyMap("Comments", "comments", String.class);
+        addPropertyToPropertyMap("Play Count", "playCount", Integer.class);
+        addPropertyToPropertyMap("Play Date", "playDate", Long.class);
+        addPropertyToPropertyMap("Play Date UTC", "playDateUTC", Date.class);
+        addPropertyToPropertyMap("Persistent ID", "persistentID", String.class);
+        addPropertyToPropertyMap("Track Type", "trackType", String.class);
+        addPropertyToPropertyMap("Location", "location", String.class);
+        addPropertyToPropertyMap("File Folder Count", "fileFolderCount", Integer.class);
+        addPropertyToPropertyMap("Library Folder Count", "libraryFolderCount", Integer.class);
+        addPropertyToPropertyMap("Disabled", "disabled", Boolean.class);
+        addPropertyToPropertyMap("Skip Count", "skipCount", Integer.class);
+        addPropertyToPropertyMap("Skip Date", "skipDate", Date.class);
+        addPropertyToPropertyMap("Composer", "composer", String.class);
+        addPropertyToPropertyMap("Album Artist", "albumArtist", String.class);
+        addPropertyToPropertyMap("Artwork Count", "artworkCount", Integer.class);
+        addPropertyToPropertyMap("Grouping", "grouping", String.class);
+        addPropertyToPropertyMap("Disc Number", "discNumber", Integer.class);
+        addPropertyToPropertyMap("Disc Count", "discCount", Integer.class);
+        addPropertyToPropertyMap("BPM", "BPM", Integer.class);
+        addPropertyToPropertyMap("Rating", "rating", Integer.class);
     }
 
     @Override
@@ -60,7 +61,7 @@ class TrackPropertyTagHandler extends BasePropertyTagHandler {
     }
 
     public void handlePropertyValue(Tag propertyValue) {
-        if (currentProperty.equals(TrackProperty.TRACK_ID)) {
+        if (currentProperty.equals(TRACK_ID)) {
             try {
                 currentTrack = new ItunesTrack();
 

@@ -16,13 +16,13 @@ class LibraryPropertyTagHandler extends BasePropertyTagHandler {
     }
 
     protected void initializePropertyMap() {
-        addPropertyToPropertyMap(LibraryProperty.MAJOR_VERSION, "majorVersion", Integer.class);
-        addPropertyToPropertyMap(LibraryProperty.MINOR_VERSION, "majorVersion", Integer.class);
-        addPropertyToPropertyMap(LibraryProperty.DATE, "date", Date.class);
-        addPropertyToPropertyMap(LibraryProperty.APPLICATION_VERSION, "applicationVersion", String.class);
-        addPropertyToPropertyMap(LibraryProperty.FEATURES, "features", Integer.class);
-        addPropertyToPropertyMap(LibraryProperty.SHOW_CONTENT_RATINGS, "showContentRatings", Boolean.class);
-        addPropertyToPropertyMap(LibraryProperty.MUSIC_FOLDER, "musicFolder", String.class);
-        addPropertyToPropertyMap(LibraryProperty.LIBRARY_PERSISTENT_ID, "libraryPersistentID", String.class);
+        addPropertyToPropertyMap("Major Version", "majorVersion", Integer.class);
+        addPropertyToPropertyMap("Minor Version", "majorVersion", Integer.class);
+        addPropertyToPropertyMap("Date", "date", Date.class);
+        addPropertyToPropertyMap("Application Version", "applicationVersion", String.class);
+        addPropertyToPropertyMap("Features", "features", Integer.class);
+        addPropertyToPropertyMap("Show Content Ratings", "showContentRatings", Boolean.class);
+        addPropertyToPropertyMap("Music Folder", "musicFolder", String.class);
+        addPropertyToPropertyMap("Library Persistent ID", "libraryPersistentID", String.class);
     }
 }

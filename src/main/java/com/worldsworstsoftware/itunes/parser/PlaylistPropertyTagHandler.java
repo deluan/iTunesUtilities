@@ -3,10 +3,10 @@ package com.worldsworstsoftware.itunes.parser;
 import com.worldsworstsoftware.itunes.ItunesLibrary;
 import com.worldsworstsoftware.itunes.ItunesPlaylist;
 import com.worldsworstsoftware.xmltagparser.Tag;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 class PlaylistPropertyTagHandler extends BasePropertyTagHandler {
+    private static final String NAME = "Name";
+
     protected int playlistParseCount = 0;
     protected ItunesPlaylist currentPlaylist;
 
@@ -16,22 +16,22 @@ class PlaylistPropertyTagHandler extends BasePropertyTagHandler {
 
     @Override
     protected void initializePropertyMap() {
-        addPropertyToPropertyMap(PlaylistProperty.NAME, "name", String.class);
-        addPropertyToPropertyMap(PlaylistProperty.PLAYLIST_ID, "playlistID", Integer.class);
-        addPropertyToPropertyMap(PlaylistProperty.PLAYLIST_PERSISTENT_ID, "playlistPersistentId", String.class);
-        addPropertyToPropertyMap(PlaylistProperty.VISIBLE, "visible", Boolean.class);
-        addPropertyToPropertyMap(PlaylistProperty.ALL_ITEMS, "allItems", Boolean.class);
-        addPropertyToPropertyMap(PlaylistProperty.SMART_INFO, "smartInfo", byte[].class);
-        addPropertyToPropertyMap(PlaylistProperty.SMART_CRITERIA, "smartCriteria", byte[].class);
-        addPropertyToPropertyMap(PlaylistProperty.MASTER, "master", Boolean.class);
-        addPropertyToPropertyMap(PlaylistProperty.AUDIOBOOKS, "audiobooks", Boolean.class);
-        addPropertyToPropertyMap(PlaylistProperty.MOVIES, "movies", Boolean.class);
-        addPropertyToPropertyMap(PlaylistProperty.MUSIC, "music", Boolean.class);
-        addPropertyToPropertyMap(PlaylistProperty.PARTY_SHUFFLE, "partyShuffle", Boolean.class);
-        addPropertyToPropertyMap(PlaylistProperty.PODCASTS, "podcasts", Boolean.class);
-        addPropertyToPropertyMap(PlaylistProperty.TV_SHOWS, "tvShows", Boolean.class);
-        addPropertyToPropertyMap(PlaylistProperty.TRACK_ID, "trackID", Integer.class, "addTrackID");
-        addPropertyToPropertyMap(PlaylistProperty.PLAYLIST_ITEMS, "", null);
+        addPropertyToPropertyMap(NAME, "name", String.class);
+        addPropertyToPropertyMap("Playlist ID", "playlistID", Integer.class);
+        addPropertyToPropertyMap("Playlist Persistent ID", "playlistPersistentId", String.class);
+        addPropertyToPropertyMap("Visible", "visible", Boolean.class);
+        addPropertyToPropertyMap("All Items", "allItems", Boolean.class);
+        addPropertyToPropertyMap("Smart Info", "smartInfo", byte[].class);
+        addPropertyToPropertyMap("Smart Criteria", "smartCriteria", byte[].class);
+        addPropertyToPropertyMap("Master", "master", Boolean.class);
+        addPropertyToPropertyMap("Audiobooks", "audiobooks", Boolean.class);
+        addPropertyToPropertyMap("Movies", "movies", Boolean.class);
+        addPropertyToPropertyMap("Music", "music", Boolean.class);
+        addPropertyToPropertyMap("Party Shuffle", "partyShuffle", Boolean.class);
+        addPropertyToPropertyMap("Podcasts", "podcasts", Boolean.class);
+        addPropertyToPropertyMap("TV Shows", "tvShows", Boolean.class);
+        addPropertyToPropertyMap("Track ID", "trackID", Integer.class, "addTrackID");
+        addPropertyToPropertyMap("Playlist Items", "", null);
     }
 
     @Override
@@ -40,7 +40,7 @@ class PlaylistPropertyTagHandler extends BasePropertyTagHandler {
     }
 
     public void handlePropertyValue(Tag propertyValue) {
-        if (currentProperty.equals(PlaylistProperty.NAME)) {
+        if (currentProperty.equals(NAME)) {
             currentPlaylist = new ItunesPlaylist(library);
 
             //add a reference to the new playlist to the library.

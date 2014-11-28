@@ -55,6 +55,11 @@ class TrackPropertyTagHandler extends BasePropertyTagHandler {
         addPropertyToPropertyMap("Rating", "rating", Integer.class);
         addPropertyToPropertyMap("Album Rating", "albumRating", Integer.class);
         addPropertyToPropertyMap("Album Rating Computed", "albumRatingComputed", Boolean.class);
+        addPropertyToPropertyMap("Compilation", "compilation", Boolean.class);
+        addPropertyToPropertyMap("Sort Name", "sortName", String.class);
+        addPropertyToPropertyMap("Sort Artist", "sortArtist", String.class);
+        addPropertyToPropertyMap("Sort Album", "sortAlbum", String.class);
+        addPropertyToPropertyMap("Sort Album Artist", "sortAlbumArtist", String.class);
     }
 
     @Override

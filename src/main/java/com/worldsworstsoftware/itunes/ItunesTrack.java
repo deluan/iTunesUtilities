@@ -118,6 +118,12 @@ public class ItunesTrack {
 	private int rating = -1;
 	protected int albumRating = -1;
 	protected boolean albumRatingComputed = false;
+	protected boolean compilation = false;
+	protected String sortName;
+	protected String sortArtist;
+	protected String sortAlbum;
+	protected String sortAlbumArtist;
+
 
 	/** the track number in a given playlist */
 	protected int playlistTrackNumber = -1;
@@ -539,11 +545,51 @@ public class ItunesTrack {
 		this.albumRating = albumRating;
 	}
 
-	public boolean getAlbumRatingComputed() {
+	public boolean isAlbumRatingComputed() {
 		return albumRatingComputed;
 	}
 
 	public void setAlbumRatingComputed(boolean albumRatingComputed) {
 		this.albumRatingComputed = albumRatingComputed;
+	}
+
+	public boolean isCompilation() {
+		return compilation;
+	}
+
+	public void setCompilation(boolean compilation) {
+		this.compilation = compilation;
+	}
+
+	public String getSortName() {
+		return sortName;
+	}
+
+	public void setSortName(String sortName) {
+		this.sortName = sortName;
+	}
+
+	public String getSortArtist() {
+		return sortArtist;
+	}
+
+	public void setSortArtist(String sortArtist) {
+		this.sortArtist = sortArtist;
+	}
+
+	public String getSortAlbum() {
+		return sortAlbum;
+	}
+
+	public void setSortAlbum(String sortAlbum) {
+		this.sortAlbum = sortAlbum;
+	}
+
+	public String getSortAlbumArtist() {
+		return sortAlbumArtist;
+	}
+
+	public void setSortAlbumArtist(String sortAlbumArtist) {
+		this.sortAlbumArtist = sortAlbumArtist;
 	}
 }

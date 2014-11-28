@@ -2,6 +2,7 @@ package com.worldsworstsoftware.itunes.parser;
 
 import com.worldsworstsoftware.itunes.ItunesLibrary;
 import com.worldsworstsoftware.xmltagparser.Tag;
+import net.vidageek.mirror.dsl.Mirror;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,51 +13,42 @@ class LibraryPropertyTagHandler implements PropertyTagHandler {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     protected static final String NO_PROPERTY = "NO PROPERTY";
-    protected static final int NO_PROPERTY_HASH_CODE = NO_PROPERTY.hashCode();
 
 
     protected ItunesLibrary library = null;
     protected String currentProperty = NO_PROPERTY;
-    protected int currentPropertyHashCode = NO_PROPERTY_HASH_CODE;
 
-    protected static Map propertyMap = null;
+    protected Map<String, String> propertyMap = new HashMap<String, String>();
+    protected Map<String, Class> propertyTypeMap = new HashMap<String, Class>();
 
-    static {
-        propertyMap = new HashMap();
-        addPropertyToPropertyMap(LibraryProperty.MAJOR_VERSION);
-        addPropertyToPropertyMap(LibraryProperty.MINOR_VERSION);
-        addPropertyToPropertyMap(LibraryProperty.APPLICATION_VERSION);
-        addPropertyToPropertyMap(LibraryProperty.FEATURES);
-        addPropertyToPropertyMap(LibraryProperty.SHOW_CONTENT_RATINGS);
-        addPropertyToPropertyMap(LibraryProperty.MUSIC_FOLDER);
-        addPropertyToPropertyMap(LibraryProperty.LIBRARY_PERSISTENT_ID);
-    }
-
-    private static void addPropertyToPropertyMap(String value) {
-        // TODO Convert to a Set
-        propertyMap.put(value, value);
-    }
+    protected DataTypeParser typeParser = new DataTypeParser();
 
     public LibraryPropertyTagHandler(ItunesLibrary library) {
         this.library = library;
+
+        initializePropertyMap();
+    }
+
+    private void initializePropertyMap() {
+        addPropertyToPropertyMap(LibraryProperty.MAJOR_VERSION, "majorVersion", Integer.class);
+        addPropertyToPropertyMap(LibraryProperty.MINOR_VERSION, "majorVersion", Integer.class);
+        addPropertyToPropertyMap(LibraryProperty.APPLICATION_VERSION, "applicationVersion", String.class);
+        addPropertyToPropertyMap(LibraryProperty.FEATURES, "features", Integer.class);
+        addPropertyToPropertyMap(LibraryProperty.SHOW_CONTENT_RATINGS, "showContentRatings", Boolean.class);
+        addPropertyToPropertyMap(LibraryProperty.MUSIC_FOLDER, "musicFolder", String.class);
+        addPropertyToPropertyMap(LibraryProperty.LIBRARY_PERSISTENT_ID, "libraryPersistentID", String.class);
+    }
+
+    private void addPropertyToPropertyMap(String value, String name, Class type) {
+        propertyMap.put(value, name);
+        propertyTypeMap.put(value, type);
     }
 
     public void handlePropertyChange(String propertyName) {
-        /**
-         * we store the list of valid properties in the internal property map,
-         * if the given propertyName is not found in that map, then we know we're
-         * dealing with an unsupported property and shouldn't worry about it in
-         * handlePropertyValue().
-         */
-
-        String libraryProperty = (String) propertyMap.get(propertyName);
-
-        if (libraryProperty != null) {
-            currentProperty = libraryProperty;
-            currentPropertyHashCode = libraryProperty.hashCode();
+        if (propertyMap.containsKey(propertyName)) {
+            currentProperty = propertyName;
         } else {
             currentProperty = NO_PROPERTY;
-            currentPropertyHashCode = NO_PROPERTY_HASH_CODE;
             logger.warn("Unsupported Itunes Library Property: " + propertyName);
         }
     }
@@ -64,40 +56,23 @@ class LibraryPropertyTagHandler implements PropertyTagHandler {
 
     public void handlePropertyValue(Tag propertyValue) {
         try {
-            if (currentPropertyHashCode == NO_PROPERTY_HASH_CODE) {
-                //don't do anything...
-            } else if (currentPropertyHashCode == LibraryProperty.MAJOR_VERSION_HASH_CODE) {
-                //example property: <key>Major Version</key><integer>1</integer>
-                library.setMajorVersion(DataTypeParser.parseInteger(LibraryProperty.MAJOR_VERSION, propertyValue));
-            } else if (currentPropertyHashCode == LibraryProperty.MINOR_VERSION_HASH_CODE) {
-                //example property: <key>Minor Version</key><integer>1</integer>
-                library.setMinorVersion(DataTypeParser.parseInteger(LibraryProperty.MINOR_VERSION, propertyValue));
-            } else if (currentPropertyHashCode == LibraryProperty.APPLICATION_VERSION_HASH_CODE) {
-                //example property: <key>Application Version</key><string>7.0.1</string>
-                library.setApplicationVersion(DataTypeParser.parseString(LibraryProperty.APPLICATION_VERSION, propertyValue));
-            } else if (currentPropertyHashCode == LibraryProperty.FEATURES_HASH_CODE) {
-                //example property: <key>Features</key><integer>1</integer>
-                library.setFeatures(DataTypeParser.parseInteger(LibraryProperty.FEATURES, propertyValue));
-            } else if (currentPropertyHashCode == LibraryProperty.SHOW_CONTENT_RATINGS_HASH_CODE) {
-                //example property: <key>Show Content Ratings</key><true/>
-                library.setShowContentRatings(DataTypeParser.parseBoolean(LibraryProperty.SHOW_CONTENT_RATINGS, propertyValue));
-            } else if (currentPropertyHashCode == LibraryProperty.MUSIC_FOLDER_HASH_CODE) {
-                //example property: <key>Music Folder</key><string>file://localhost/E:/itunes/</string>
-                library.setMusicFolder(DataTypeParser.parseString(LibraryProperty.MUSIC_FOLDER, propertyValue));
-            } else if (currentPropertyHashCode == LibraryProperty.LIBRARY_PERSISTENT_ID_HASH_CODE) {
-                //example property: <key>Library Persistent ID</key><string>4EC2FAC25152379E</string>
-                library.setLibraryPersistentID(DataTypeParser.parseString(LibraryProperty.LIBRARY_PERSISTENT_ID, propertyValue));
+            if (currentProperty.equals(NO_PROPERTY)) {
+                return;
+            }
+
+            String name = propertyMap.get(currentProperty);
+            if (name != null) {
+                Class type = propertyTypeMap.get(currentProperty);
+                Object value = typeParser.parse(currentProperty, propertyValue, type);
+                new Mirror().on(library).invoke().setterFor(name).withValue(value);
             } else {
                 logger.warn("Supported Itunes Library Property Was Not Handled Correctly: " + currentProperty);
             }
         } catch (Exception e) {
             logger.error("Error occured during library property parsing: " + e.getMessage(), e, true);
+        } finally {
+            currentProperty = NO_PROPERTY;
         }
-
-        //now that we've handled the data for this property, we need to reset ourselves back to "no property"
-        currentProperty = NO_PROPERTY;
-        currentPropertyHashCode = NO_PROPERTY_HASH_CODE;
-
     }
 
 }

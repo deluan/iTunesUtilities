@@ -20,15 +20,6 @@ class LibraryProperty
 	public static final String SHOW_CONTENT_RATINGS = "Show Content Ratings";
 	public static final String MUSIC_FOLDER = "Music Folder";
 	public static final String LIBRARY_PERSISTENT_ID = "Library Persistent ID";
-	
-	public static final int MAJOR_VERSION_HASH_CODE = MAJOR_VERSION.hashCode();
-	public static final int MINOR_VERSION_HASH_CODE = MINOR_VERSION.hashCode();
-	public static final int APPLICATION_VERSION_HASH_CODE = APPLICATION_VERSION.hashCode();
-	public static final int FEATURES_HASH_CODE = FEATURES.hashCode();
-	public static final int SHOW_CONTENT_RATINGS_HASH_CODE = SHOW_CONTENT_RATINGS.hashCode();
-	public static final int MUSIC_FOLDER_HASH_CODE = MUSIC_FOLDER.hashCode();
-	public static final int LIBRARY_PERSISTENT_ID_HASH_CODE = LIBRARY_PERSISTENT_ID.hashCode();
-	
 	public static final String TRACKS = "Tracks";
 	public static final String PLAYLISTS = "Playlists";
 }

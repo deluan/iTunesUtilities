@@ -169,8 +169,36 @@ public class ItunesTrack {
         location = copyString(obj.location);
         fileFolderCount = obj.fileFolderCount;
         libraryFolderCount = obj.libraryFolderCount;
-        playlistTrackNumber = obj.playlistTrackNumber;
+		disabled = obj.disabled;
+		skipCount = obj.skipCount;
+		skipDate = copyDate(obj.skipDate);
+		composer = copyString(obj.composer);
+		albumArtist = copyString(obj.albumArtist);
+		artworkCount = obj.artworkCount;
+		grouping = copyString(obj.grouping);
+		discNumber = obj.discNumber;
+		discCount = obj.discCount;
+		BPM = obj.BPM;
 		rating = obj.rating;
+		albumRating = obj.albumRating;
+		albumRatingComputed = obj.albumRatingComputed;
+		compilation = obj.compilation;
+		sortName = copyString(obj.sortName);
+		sortArtist = copyString(obj.sortArtist);
+		sortAlbum = copyString(obj.sortAlbum);
+		sortAlbumArtist = copyString(obj.sortAlbumArtist);
+		sortComposer = copyString(obj.sortComposer);
+		purchased = obj.purchased;
+		clean = obj.clean;
+		partOfGaplessAlbum = obj.partOfGaplessAlbum;
+		hasVideo = obj.hasVideo;
+		HD = obj.HD;
+		musicVideo = obj.musicVideo;
+		volumeAdjustment = obj.volumeAdjustment;
+		startTime = obj.startTime;
+		stopTime = obj.stopTime;
+
+		playlistTrackNumber = obj.playlistTrackNumber;
 	}
 
 	protected Date copyDate(Date value) {

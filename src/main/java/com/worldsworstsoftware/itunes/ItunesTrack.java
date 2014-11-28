@@ -87,7 +87,7 @@ public class ItunesTrack {
     protected String album = null;
     protected String genre = null;
     protected String kind = null;
-    protected int size = -1;
+    protected long size = -1;
     protected int totalTime = -1;
     protected int trackNumber = -1;
     protected int trackCount = -1;
@@ -231,12 +231,12 @@ public class ItunesTrack {
 		this.kind = kind;
 	}
 
-	public int getSize()
+	public long getSize()
 	{
 		return size;
 	}
 
-	public void setSize(int size)
+	public void setSize(long size)
 	{
 		this.size = size;
 	}

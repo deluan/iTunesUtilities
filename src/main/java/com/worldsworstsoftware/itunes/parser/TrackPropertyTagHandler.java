@@ -156,7 +156,7 @@ class TrackPropertyTagHandler implements PropertyTagHandler {
                         TrackProperty.KIND, propertyValue));
             } else if (currentPropertyHashCode == TrackProperty.SIZE_HASH_CODE) {
                 // example property: <key>Size</key><integer>4299529</integer>
-                currentTrack.setSize(DataTypeParser.parseInteger(
+                currentTrack.setSize(DataTypeParser.parseLong(
                         TrackProperty.SIZE, propertyValue));
             } else if (currentPropertyHashCode == TrackProperty.TOTAL_TIME_HASH_CODE) {
                 // example property: <key>Total

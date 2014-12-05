@@ -88,13 +88,13 @@ public class ItunesFileNameUtils
         boolean osIsMacosx = System.getProperty("os.name").toLowerCase().startsWith("mac os x");
         if (osIsMacosx)
         {
-            filename = StringReplacer.replace(filename, "file:\\localhost", "");
-            filename = StringReplacer.replace(filename, "file://localhost", "");
+            filename = StringReplacer.replace(filename, "file:\\", "");
+            filename = StringReplacer.replace(filename, "file://", "");
         }
         else //windows, remove the slash at the end of localhost
         {
-            filename = StringReplacer.replace(filename, "file:\\localhost\\", "");
-            filename = StringReplacer.replace(filename, "file://localhost/", "");
+            filename = StringReplacer.replace(filename, "file:\\\\\\", "");
+            filename = StringReplacer.replace(filename, "file:///", "");
         }
         return filename;
     }

@@ -96,7 +96,7 @@ public class ItunesPrinter
         while (it.hasNext())
         {
             ItunesTrack track  = (ItunesTrack) it.next();
-            out.println(ItunesFileNameUtils.CleanItunesFilename(track.getLocation()));
+            out.println(ItunesFileNameUtils.cleanItunesFilename(track.getLocation()));
         }
     }
     

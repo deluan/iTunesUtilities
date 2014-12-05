@@ -68,7 +68,7 @@ public class ItunesFileNameUtils
         return value;
     }
     
-    public static String CleanItunesFilename(String originalFileName)
+    public static String cleanItunesFilename(String originalFileName)
     {
         String filename = originalFileName;
         

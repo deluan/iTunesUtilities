@@ -100,7 +100,7 @@ public class PlaylistCopier
                 
                 try
                 {
-                    _fileCopier.copyFile(ItunesFileNameUtils.CleanItunesFilename(track.getLocation()), _outputPath, _fileName);
+                    _fileCopier.copyFile(ItunesFileNameUtils.cleanItunesFilename(track.getLocation()), _outputPath, _fileName);
                 }
                 catch (Exception e)
                 {

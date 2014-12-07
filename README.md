@@ -1,11 +1,13 @@
 iTunes Utilities
 ================
 
+[ ![Download](https://api.bintray.com/packages/deluan/maven/itunes-utilities/images/download.svg) ](https://bintray.com/deluan/maven/itunes-utilities/_latestVersion)
+
 iTunes Utilities is an open-source Java library that provides cross-platform functionality related to parsing and detecting the Itunes library xml file. 
 
+* updated to iTunes 12 by Deluan Quintao
 * written by Jason Baker ([jason@onejasonforsale.com](mailto:jason@onejasonforsale.com))
-* on github: [https://github.com/codercowboy/iTunesUtilities](https://github.com/codercowboy/iTunesUtilities)
-* more info: [http://www.codercowboy.com](http://www.codercowboy.com)
+* on github: [https://github.com/deluan/iTunesUtilities](https://github.com/deluan/iTunesUtilities)
 
 Originally published on Jason's World's Worst Software website.
 

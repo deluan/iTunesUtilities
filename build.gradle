@@ -3,11 +3,12 @@ apply plugin: 'maven'
 apply plugin: 'idea'
 
 group = 'com.worldsworstsoftware'
-version = '1.1-SNAPSHOT'
+version = '1.1'
 
 repositories {
     mavenLocal()
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
@@ -41,6 +42,71 @@ task sourcesJar(type: Jar, dependsOn: classes) {
     from sourceSets.main.allSource
 }
 
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
 artifacts {
-    archives sourcesJar
+    archives sourcesJar, javadocJar
+}
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:0.5'
+    }
+}
+
+apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.bintray'
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            if (plugins.hasPlugin('war')) {
+                from components.web
+            } else {
+                from components.java
+            }
+
+            artifact sourcesJar {
+                classifier "sources"
+            }
+
+            artifact javadocJar {
+                classifier "javadoc"
+            }
+
+            pom.withXml {
+                asNode().dependencies.'*'.findAll() {
+                    it.scope.text() == 'runtime' && project.configurations.compile.allDependencies.find { dep ->
+                        dep.name == it.artifactId.text()
+                    }
+                }.each() {
+                    it.scope*.value = 'compile'
+                }
+            }
+        }
+    }
+}
+
+
+bintray {
+    user = bintrayUser
+    key = bintrayKey
+    publications = ['mavenJava']
+    pkg {
+        repo = 'maven'
+        name = 'itunes-utilities'
+        desc = 'A set of classes that help developers build applications around iTunes\' library data'
+        licenses = ['Apache-2.0']
+        labels = ['iTunes']
+        publicDownloadNumbers = true
+
+        websiteUrl = 'https://github.com/deluan/iTunesUtilities'
+        vcsUrl = 'https://github.com/deluan/iTunesUtilities.git'
+    }
 }
